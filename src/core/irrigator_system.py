@@ -5,9 +5,9 @@ class IrrigatorSystem:
 
     def check(self):
         self.needs_water = False
-        for hysteresis in self.irrigators.values():
-            hysteresis.check()
-            if hysteresis.switch.get_state() == True:
+        for irrigator in self.irrigators:
+            irrigator.check()
+            if irrigator.switch.get_state() == True:
                 self.needs_water = True
 
     
