@@ -10,6 +10,12 @@ class Irrigator:
         self.hysteresis.check()
 
     @property
+    def low(self):
+        return self.hysteresis.low
+    @property
+    def high(self):
+        return self.hysteresis.high
+    @property
     def sensor(self):
         return self.hysteresis.sensor
     @property

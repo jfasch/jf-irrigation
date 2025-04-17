@@ -65,3 +65,24 @@ def test_need_water():
     irrigator_system.check()
     assert irrigator_system.needs_water == True
 
+def test_public_iface_for_dbus():
+    irrigator_tomatoes = Irrigator(
+        name = 'tomatoes',
+        sensor = MockMoistureSensor(value=10),
+        switch = MockSwitch(state=False),
+        low = 30,
+        high = 40,
+    )
+    irrigator_beans = Irrigator(
+        name = 'beans',
+        sensor = MockMoistureSensor(value=20),
+        switch = MockSwitch(state=False),
+        low = 10,
+        high = 20,
+    )
+    irrigator_system = IrrigatorSystem((irrigator_tomatoes, irrigator_beans))
+
+    assert irrigator_system.get_irrigator('tomatoes') is irrigator_tomatoes
+    assert irrigator_system.get_irrigator('beans') is irrigator_beans
+    irrigator_system.check()
+    assert irrigator_system.needs_water
