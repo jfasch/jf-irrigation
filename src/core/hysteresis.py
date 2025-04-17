@@ -11,5 +11,5 @@ class Hysteresis:
             self.switch.set_state(True)
         elif value > self.high:
             self.switch.set_state(False)
-        else: 
+        else:
             pass
