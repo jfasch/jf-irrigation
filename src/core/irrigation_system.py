@@ -1,4 +1,4 @@
-class IrrigatorSystem:
+class IrrigationSystem:
     def __init__(self, irrigators):
         self.irrigators = { ir.name: ir for ir in irrigators }
         self.needs_water = False

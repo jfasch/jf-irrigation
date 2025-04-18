@@ -1,5 +1,5 @@
 from core.irrigator import Irrigator
-from core.irrigator_system import IrrigatorSystem
+from core.irrigation_system import IrrigationSystem
 from core.moisture_mock import MockMoistureSensor
 from core.switch_mock import MockSwitch
 from core.hysteresis import Hysteresis
@@ -20,20 +20,20 @@ def test_basic():
         low = 10,
         high = 20,
     )
-    irrigator_system = IrrigatorSystem((irrigator_tomatoes, irrigator_beans))
+    irrigation_system = IrrigationSystem((irrigator_tomatoes, irrigator_beans))
 
-    irrigator_system.check()
+    irrigation_system.check()
     assert irrigator_tomatoes.switch.get_state() == True
     assert irrigator_beans.switch.get_state() == False
 
     irrigator_beans.sensor.set_value(5)
-    irrigator_system.check()
+    irrigation_system.check()
     assert irrigator_tomatoes.switch.get_state() == True
     assert irrigator_beans.switch.get_state() == True
 
     irrigator_tomatoes.sensor.set_value(45)
     irrigator_beans.sensor.set_value(25)
-    irrigator_system.check()
+    irrigation_system.check()
     assert irrigator_tomatoes.switch.get_state() == False
     assert irrigator_beans.switch.get_state() == False
 
@@ -52,18 +52,18 @@ def test_need_water():
         low=10, 
         high=20, 
     )
-    irrigator_system = IrrigatorSystem((irrigator_tomatoes, irrigator_beans))
+    irrigation_system = IrrigationSystem((irrigator_tomatoes, irrigator_beans))
 
-    irrigator_system.check()
-    assert irrigator_system.needs_water == True
+    irrigation_system.check()
+    assert irrigation_system.needs_water == True
 
-    irrigator_system.check()
-    assert irrigator_system.needs_water == True
+    irrigation_system.check()
+    assert irrigation_system.needs_water == True
     
     irrigator_tomatoes.sensor.set_value(35)
 
-    irrigator_system.check()
-    assert irrigator_system.needs_water == True
+    irrigation_system.check()
+    assert irrigation_system.needs_water == True
 
 def test_public_iface_for_dbus():
     irrigator_tomatoes = Irrigator(
@@ -80,9 +80,9 @@ def test_public_iface_for_dbus():
         low = 10,
         high = 20,
     )
-    irrigator_system = IrrigatorSystem((irrigator_tomatoes, irrigator_beans))
+    irrigation_system = IrrigationSystem((irrigator_tomatoes, irrigator_beans))
 
-    assert irrigator_system.get_irrigator('tomatoes') is irrigator_tomatoes
-    assert irrigator_system.get_irrigator('beans') is irrigator_beans
-    irrigator_system.check()
-    assert irrigator_system.needs_water
+    assert irrigation_system.get_irrigator('tomatoes') is irrigator_tomatoes
+    assert irrigation_system.get_irrigator('beans') is irrigator_beans
+    irrigation_system.check()
+    assert irrigation_system.needs_water

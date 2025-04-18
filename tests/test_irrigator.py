@@ -33,6 +33,7 @@ def test_public_iface_for_dbus():
         switch = switch,
     )
 
+    # publicly exposed
     irrigator.check()
     assert irrigator.sensor is sensor
     assert irrigator.switch is switch
