@@ -1,5 +1,5 @@
-from core.switch_mock import MockSwitch
-from core.switch_file import FileSwitch
+from irrigation.core.switch_mock import MockSwitch
+from irrigation.core.switch_file import FileSwitch
 
 
 def test_mock_switch():

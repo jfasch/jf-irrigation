@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-from core.config import Config
-from dbus.export import export_system
+from irrigation.core.config import Config
+from irrigation.dbus.export import export_system
 
 import asyncio
 import argparse

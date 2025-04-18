@@ -2,7 +2,8 @@ from .interfaces import DBusIrrigationSystem, DBusIrrigator
 
 import sdbus
 
-_dbus_objects = []      # ensure that objects stay referenced
+
+_dbus_objects = []      # ensure that we keep them referenced
 
 async def export_system(irrigation_system):
     await sdbus.request_default_bus_name_async('me.faschingbauer.IrrigationService')

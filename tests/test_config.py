@@ -1,4 +1,4 @@
-from core.config import Config
+from irrigation.core.config import Config
 
 import pytest
 

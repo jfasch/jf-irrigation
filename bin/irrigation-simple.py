@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from core.config import Config
+from irrigation.core.config import Config
 
 import time
 import argparse

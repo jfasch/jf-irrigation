@@ -1,4 +1,4 @@
-from sdbus import DbusInterfaceCommonAsync, dbus_method_async, dbus_property_async, dbus_signal_async
+from sdbus import DbusInterfaceCommonAsync, dbus_method_async, dbus_property_async
 
 
 class DBusIrrigationSystem(
