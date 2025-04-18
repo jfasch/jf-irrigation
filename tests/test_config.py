@@ -1,6 +1,7 @@
-from core.config import PyConfig
+from core.config import Config
 
 import pytest
+
 
 @pytest.fixture
 def _configfile_standard(tmpdir):
@@ -28,7 +29,7 @@ def _configfile_standard(tmpdir):
     return tmpdir / 'config.conf'
 
 def test_full_system(_configfile_standard):
-    config = PyConfig(_configfile_standard)
+    config = Config(_configfile_standard)
 
     irrigation_system = config.instantiate()
 

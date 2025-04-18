@@ -36,7 +36,7 @@ class _IrrigationSystem_Params:
     def instantiate(self):
         return IrrigationSystem([irrigator.instantiate() for irrigator in self.irrigators])
 
-class PyConfig:
+class Config:
     def __init__(self, filename):
         with open(filename) as f:
             content = f.read()
