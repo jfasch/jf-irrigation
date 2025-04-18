@@ -1,7 +1,7 @@
 import random
 
 
-class RandomMoistureSensor:
+class RandomSensor:
     def __init__(self, low, high):
         self.low = low
         self.high = high

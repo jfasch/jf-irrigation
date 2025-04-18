@@ -1,4 +1,4 @@
-from core.moisture_mock import MockMoistureSensor
+from core.sensor_mock import MockSensor
 from core.switch_mock import MockSwitch
 from core.irrigator import Irrigator
 
@@ -6,7 +6,7 @@ import pytest
 
 
 def test_basic():
-    sensor = MockMoistureSensor(value=42)
+    sensor = MockSensor(value=42)
     switch = MockSwitch(state=False)
 
     irrigator = Irrigator(
@@ -22,7 +22,7 @@ def test_basic():
     assert irrigator.switch.get_state() == False
 
 def test_public_iface_for_dbus():
-    sensor = MockMoistureSensor(value=42)
+    sensor = MockSensor(value=42)
     switch = MockSwitch(state=False)
 
     irrigator = Irrigator(

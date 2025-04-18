@@ -1,4 +1,4 @@
-from .moisture_file import FileMoistureSensor
+from .sensor_file import FileSensor
 from .switch_file import FileSwitch
 from .irrigator import Irrigator
 from .irrigation_system import IrrigationSystem
@@ -8,7 +8,7 @@ class _FileSensor_Params:
     def __init__(self, filename):
         self.filename = filename
     def instantiate(self):
-        return FileMoistureSensor(self.filename)
+        return FileSensor(self.filename)
 
 class _FileSwitch_Params:
     def __init__(self, filename):

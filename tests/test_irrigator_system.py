@@ -1,6 +1,6 @@
 from core.irrigator import Irrigator
 from core.irrigation_system import IrrigationSystem
-from core.moisture_mock import MockMoistureSensor
+from core.sensor_mock import MockSensor
 from core.switch_mock import MockSwitch
 from core.hysteresis import Hysteresis
 
@@ -8,14 +8,14 @@ from core.hysteresis import Hysteresis
 def test_basic():
     irrigator_tomatoes = Irrigator(
         name = 'tomatoes',
-        sensor = MockMoistureSensor(value=10),
+        sensor = MockSensor(value=10),
         switch = MockSwitch(state=False),
         low = 30,
         high = 40,
     )
     irrigator_beans = Irrigator(
         name = 'beans',
-        sensor = MockMoistureSensor(value=20),
+        sensor = MockSensor(value=20),
         switch = MockSwitch(state=False),
         low = 10,
         high = 20,
@@ -40,14 +40,14 @@ def test_basic():
 def test_need_water():
     irrigator_tomatoes = Irrigator(
         name = 'tomatoes',
-        sensor = MockMoistureSensor(value=10),
+        sensor = MockSensor(value=10),
         switch = MockSwitch(state=False),
         low=30, 
         high=40, 
     )
     irrigator_beans = Irrigator(
         name = 'beans',
-        sensor = MockMoistureSensor(value=20),
+        sensor = MockSensor(value=20),
         switch = MockSwitch(state=False),
         low=10, 
         high=20, 
@@ -68,14 +68,14 @@ def test_need_water():
 def test_public_iface_for_dbus():
     irrigator_tomatoes = Irrigator(
         name = 'tomatoes',
-        sensor = MockMoistureSensor(value=10),
+        sensor = MockSensor(value=10),
         switch = MockSwitch(state=False),
         low = 30,
         high = 40,
     )
     irrigator_beans = Irrigator(
         name = 'beans',
-        sensor = MockMoistureSensor(value=20),
+        sensor = MockSensor(value=20),
         switch = MockSwitch(state=False),
         low = 10,
         high = 20,

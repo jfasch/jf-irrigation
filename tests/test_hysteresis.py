@@ -1,10 +1,10 @@
 from core.hysteresis import Hysteresis
-from core.moisture_mock import MockMoistureSensor
+from core.sensor_mock import MockSensor
 from core.switch_mock import MockSwitch
 
 
 def test_basic():
-    sensor = MockMoistureSensor(value=25)
+    sensor = MockSensor(value=25)
     switch = MockSwitch(state=False)
     hyst = Hysteresis(low=20.0, high=30.0, sensor=sensor, switch=switch)
 
