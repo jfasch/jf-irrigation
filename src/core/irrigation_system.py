@@ -3,6 +3,9 @@ class IrrigationSystem:
         self.irrigators = { ir.name: ir for ir in irrigators }
         self.needs_water = False
 
+    def get_irrigator_names(self):
+        return list(self.irrigators.keys())
+
     def get_irrigator(self, name):
         return self.irrigators[name]
 
