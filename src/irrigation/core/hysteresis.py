@@ -7,9 +7,17 @@ class Hysteresis:
 
     def check(self):
         value = self.sensor.get_value()
+        old_state = self.switch.get_state()
+
         if value < self.low:
-            self.switch.set_state(True)
+            new_state = True
         elif value > self.high:
-            self.switch.set_state(False)
+            new_state = False
         else:
-            pass
+            new_state = old_state
+
+        if new_state != old_state:
+            self.switch.set_state(new_state)
+            return new_state
+        else:
+            return None

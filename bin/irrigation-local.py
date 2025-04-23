@@ -6,7 +6,7 @@ import time
 import argparse
 
 
-parser = argparse.ArgumentParser(description='Irrigation system (simple).')
+parser = argparse.ArgumentParser(description='Irrigation system (only local, no D-Bus).')
 parser.add_argument('--configfile', required=True)
 args = parser.parse_args()
 

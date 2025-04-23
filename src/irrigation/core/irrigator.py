@@ -7,7 +7,7 @@ class Irrigator:
         self.hysteresis = Hysteresis(low=low, high=high, sensor=sensor, switch=switch)
 
     def check(self):
-        self.hysteresis.check()
+        return self.hysteresis.check()
 
     @property
     def low(self):

@@ -1,7 +1,6 @@
 class IrrigationSystem:
     def __init__(self, irrigators):
         self.irrigators = { ir.name: ir for ir in irrigators }
-        self.needs_water = False
 
     def get_irrigator_names(self):
         return list(self.irrigators.keys())
@@ -10,10 +9,9 @@ class IrrigationSystem:
         return self.irrigators[name]
 
     def check(self):
-        self.needs_water = False
+        new_switch_states = {}
         for irrigator in self.irrigators.values():
-            irrigator.check()
-            if irrigator.switch.get_state() == True:
-                self.needs_water = True
-
-    
+            new_switch_state = irrigator.check()
+            if new_switch_state is not None:
+                new_switch_states[irrigator.name] = new_switch_state
+        return new_switch_states

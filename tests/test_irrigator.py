@@ -21,6 +21,33 @@ def test_basic():
     
     assert irrigator.switch.get_state() == False
 
+def test_switch_changed_info():
+    sensor = MockSensor(value=42)
+    switch = MockSwitch(state=False)
+
+    irrigator = Irrigator(
+        name = 'tomatoes',
+        low = 20,
+        high = 40,
+        sensor = sensor,
+        switch = switch,
+    )
+
+    new_switch_state = irrigator.check()    # nothing to do
+    assert new_switch_state is None
+
+    sensor.set_value(10)      # below low -> need water
+    new_switch_state = irrigator.check()
+    assert new_switch_state == True
+    
+    sensor.set_value(30)      # right in the middle
+    new_switch_state = irrigator.check()
+    assert new_switch_state is None
+
+    sensor.set_value(50)      # saturated
+    new_switch_state = irrigator.check()
+    assert new_switch_state == False
+
 def test_public_iface_for_dbus():
     sensor = MockSensor(value=42)
     switch = MockSwitch(state=False)

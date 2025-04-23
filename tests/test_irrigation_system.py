@@ -37,35 +37,7 @@ def test_basic():
     assert irrigator_tomatoes.switch.get_state() == False
     assert irrigator_beans.switch.get_state() == False
 
-def test_need_water():
-    irrigator_tomatoes = Irrigator(
-        name = 'tomatoes',
-        sensor = MockSensor(value=10),
-        switch = MockSwitch(state=False),
-        low=30, 
-        high=40, 
-    )
-    irrigator_beans = Irrigator(
-        name = 'beans',
-        sensor = MockSensor(value=20),
-        switch = MockSwitch(state=False),
-        low=10, 
-        high=20, 
-    )
-    irrigation_system = IrrigationSystem((irrigator_tomatoes, irrigator_beans))
-
-    irrigation_system.check()
-    assert irrigation_system.needs_water == True
-
-    irrigation_system.check()
-    assert irrigation_system.needs_water == True
-    
-    irrigator_tomatoes.sensor.set_value(35)
-
-    irrigation_system.check()
-    assert irrigation_system.needs_water == True
-
-def test_public_iface_for_dbus():
+def test_switches_changed():
     irrigator_tomatoes = Irrigator(
         name = 'tomatoes',
         sensor = MockSensor(value=10),
@@ -75,14 +47,31 @@ def test_public_iface_for_dbus():
     )
     irrigator_beans = Irrigator(
         name = 'beans',
-        sensor = MockSensor(value=20),
+        sensor = MockSensor(value=15),
         switch = MockSwitch(state=False),
-        low = 10,
-        high = 20,
+        low=10, 
+        high=20, 
     )
     irrigation_system = IrrigationSystem((irrigator_tomatoes, irrigator_beans))
 
-    assert irrigation_system.get_irrigator('tomatoes') is irrigator_tomatoes
-    assert irrigation_system.get_irrigator('beans') is irrigator_beans
-    irrigation_system.check()
-    assert irrigation_system.needs_water
+    switches_changed = irrigation_system.check()
+    assert len(switches_changed) == 1
+    assert switches_changed['tomatoes'] == True
+
+    switches_changed = irrigation_system.check()
+    assert len(switches_changed) == 0
+
+    irrigator_tomatoes.sensor.set_value(45)    # above high -> off
+    switches_changed = irrigation_system.check()
+    assert len(switches_changed) == 1
+    assert switches_changed['tomatoes'] == False
+
+    switches_changed = irrigation_system.check()
+    assert len(switches_changed) == 0
+
+    irrigator_tomatoes.sensor.set_value(0)
+    irrigator_beans.sensor.set_value(0)
+    switches_changed = irrigation_system.check()
+    assert len(switches_changed) == 2
+    assert switches_changed['tomatoes'] == True
+    assert switches_changed['beans'] == True
