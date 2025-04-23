@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-from irrigation.core.config import Config
-from irrigation.dbus.interfaces import DBusIrrigationSystem, DBusIrrigator
+from irrigation.config import Config
+from irrigation.dbus_interfaces import DBusIrrigationSystem, DBusIrrigator
 
 import argparse
 import sdbus

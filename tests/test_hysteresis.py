@@ -1,6 +1,6 @@
-from irrigation.core.hysteresis import Hysteresis
-from irrigation.core.sensor_mock import MockSensor
-from irrigation.core.switch_mock import MockSwitch
+from irrigation.hysteresis import Hysteresis
+from irrigation.sensor_mock import MockSensor
+from irrigation.switch_mock import MockSwitch
 
 
 def test_basic():

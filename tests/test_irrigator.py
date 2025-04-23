@@ -1,6 +1,6 @@
-from irrigation.core.sensor_mock import MockSensor
-from irrigation.core.switch_mock import MockSwitch
-from irrigation.core.irrigator import Irrigator
+from irrigation.sensor_mock import MockSensor
+from irrigation.switch_mock import MockSwitch
+from irrigation.irrigator import Irrigator
 
 import pytest
 

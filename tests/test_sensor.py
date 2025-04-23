@@ -1,6 +1,6 @@
-from irrigation.core.sensor_mock import MockSensor
-from irrigation.core.sensor_random import RandomSensor
-from irrigation.core.sensor_file import FileSensor
+from irrigation.sensor_mock import MockSensor
+from irrigation.sensor_random import RandomSensor
+from irrigation.sensor_file import FileSensor
 
 import pytest
 

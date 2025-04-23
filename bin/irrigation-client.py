@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from irrigation.dbus.interfaces import DBusIrrigationSystem, DBusIrrigator
+from irrigation.interfaces import DBusIrrigationSystem, DBusIrrigator
 
 import asyncio
 
